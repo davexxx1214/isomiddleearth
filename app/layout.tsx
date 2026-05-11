@@ -36,7 +36,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         {children}
         <GoogleAnalytics gaId="G-3J7N3BKGKM" />

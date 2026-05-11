@@ -22,12 +22,17 @@ export default function GithubStarModal() {
 
   useEffect(() => {
     if (typeof window === "undefined") return;
+    let shouldOpen = false;
     try {
       const seen = window.localStorage.getItem(STORAGE_KEY);
-      if (!seen) setOpen(true);
+      shouldOpen = !seen;
     } catch {
-      setOpen(true);
+      shouldOpen = true;
     }
+
+    if (!shouldOpen) return;
+    const timer = window.setTimeout(() => setOpen(true), 0);
+    return () => window.clearTimeout(timer);
   }, []);
 
   const markSeen = () => {
